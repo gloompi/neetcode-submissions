@@ -1,0 +1,41 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+
+class Solution {
+    fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
+        val head = ListNode(-1)
+        var curr: ListNode? = head
+        var p1 = list1
+        var p2 = list2
+
+        while (p1 != null && p2 != null) {
+            if (p1.`val` < p2.`val`) {
+                curr?.next = p1
+                p1 = p1.next
+            } else {
+                curr?.next = p2
+                p2 = p2.next
+            }
+
+            curr = curr?.next
+        }
+
+        while (p1 != null) {
+            curr?.next = p1
+            p1 = p1.next
+            curr = curr?.next
+        }
+
+        while (p2 != null) {
+            curr?.next = p2
+            p2 = p2.next
+            curr = curr?.next
+        }
+
+        return head.next
+    }
+}
